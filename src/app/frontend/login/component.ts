@@ -60,6 +60,8 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.location.href = '/sign-out';
+
     this.selectedAuthenticationMode =
       this.selectedAuthenticationMode || this.cookies_.get(this.CONFIG.authModeCookieName) || '';
 
