@@ -43,8 +43,6 @@ export class GlobalErrorHandler implements ErrorHandler {
       console.error(error);
       return;
     }
-
-    throw error;
   }
 
   private handleHTTPError_(error: HttpErrorResponse): void {
