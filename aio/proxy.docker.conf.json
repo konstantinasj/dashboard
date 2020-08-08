@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "http://k8-api-mocks:5655",
+    "secure": false
+  },
+  "/config": {
+    "target": "http://k8-api-mocks:5655",
+    "secure": false
+  }
+}

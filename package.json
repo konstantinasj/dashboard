@@ -10,6 +10,7 @@
     "start": "concurrently \"npm run start:backend --kubernetes-dashboard:sidecar_host=$npm_package_config_sidecar_host\" \"npm run start:frontend --kubernetes-dashboard:bind_address=$npm_package_config_bind_address --kubernetes-dashboard:port=$npm_package_config_port\"",
     "start:https": "concurrently \"npm run start:backend:https --kubernetes-dashboard:sidecar_host=$npm_package_config_sidecar_host\" \"npm run start:frontend:https --kubernetes-dashboard:bind_address=$npm_package_config_bind_address --kubernetes-dashboard:port=$npm_package_config_port\"",
     "start:frontend": "ng serve --aot --progress=false --proxy-config aio/proxy.conf.json --host=localhost --port=9999",
+    "start:frontend:docker": "ng serve --aot --progress=false --proxy-config aio/proxy.docker.conf.json --host=0.0.0.0 --port=9998 --disableHostCheck=true",
     "start:frontend:https": "node aio/scripts/version.js && ng serve --progress=false --aot --proxy-config aio/https-proxy.conf.json --ssl --host=$npm_package_config_bind_address --port $npm_package_config_port",
     "start:backend": "KUBECONFIG=${KUBECONFIG:-$npm_package_config_kubeconfig}; gulp serve --kubeconfig $KUBECONFIG --sidecarServerHost $npm_package_config_sidecar_host",
     "start:backend:https": "KUBECONFIG=${KUBECONFIG:-$npm_package_config_kubeconfig}; gulp serve --kubeconfig $KUBECONFIG --autoGenerateCerts true --sidecarServerHost $npm_package_config_sidecar_host",
@@ -52,9 +53,7 @@
     "fix:frontend:html": "./aio/scripts/format.sh --html",
     "fix:license": "license-check-and-add add",
     "fix:i18n": "ng xi18n --outFile ../i18n/messages.xlf && aio/scripts/xliffmerge.sh",
-    "clean": "rm -rf .go_workspace .tmp coverage dist npm-debug.log",
-    "postversion": "node aio/scripts/version.js",
-    "postinstall": "node aio/scripts/version.js && command -v golangci-lint >/dev/null 2>&1 || { curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin v1.23.6; } && go mod download && ngcc"
+    "clean": "rm -rf .go_workspace .tmp coverage dist npm-debug.log"
   },
   "husky": {
     "hooks": {
@@ -144,7 +143,6 @@
     "@angular/cli": "9.1.9",
     "@angular/compiler-cli": "9.1.9",
     "@angular/language-service": "9.1.11",
-    "@cypress/webpack-preprocessor": "5.4.1",
     "@types/jasmine": "3.5.11",
     "@types/jasminewd2": "2.0.8",
     "@types/js-yaml": "3.12.4",
@@ -155,7 +153,6 @@
     "babel-register": "6.26.0",
     "codelyzer": "5.2.2",
     "concurrently": "5.2.0",
-    "cypress": "4.8.0",
     "del": "5.1.0",
     "eslint": "7.3.0",
     "eslint-plugin-rxjs": "0.0.2-beta.25",
