@@ -80,5 +80,6 @@ Participation in the Kubernetes community is governed by the [Kubernetes Code of
 _Copyright 2019 [The Kubernetes Dashboard Authors](https://github.com/kubernetes/dashboard/graphs/contributors)_
 
 ### Docker
-- Build `docker build -t ianus/ianus-k8-dashboard:1.0.1 .`
+- Build application `npm run build:frontend`.
+- Build `docker build -t ianus/ianus-k8-dashboard:1.0.1 -f Dockerfile-nginx .`
 - Run `docker run -p 9998:9998 --name ianus-k8-dashboard ianus/ianus-k8-dashboard:1.0.0`
