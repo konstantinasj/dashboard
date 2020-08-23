@@ -6,4 +6,5 @@ aio/scripts/run-gulp-in-docker.sh
 .git
 .tmp/
 .tools/
+dist/
 node_modules/
