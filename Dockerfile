@@ -1,5 +1,5 @@
 # Build application artifacts
-FROM node:12.13.1 AS builder
+FROM node:12.18.3 AS builder
 
 WORKDIR /usr/src/app
 
@@ -9,7 +9,7 @@ COPY . .
 RUN npm run build:frontend
 
 # Deploy artifacts and run them in NGINX HTTP server
-FROM nginx:1.17.10-alpine AS server
+FROM nginx:1.19.2-alpine AS server
 
 RUN mkdir -p /usr/share/nginx/dist
 
